@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhysicsEngine.Cli", "PhysicsEngine\PhysicsEngine.Cli.csproj", "{082FFD48-EF35-48A9-A276-4B251C8C5A2D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhysicsEngine.Core", "PhysicsEngine.Domain\PhysicsEngine.Core.csproj", "{AE5BC3D6-92B4-4720-859F-3A06DCB6C9C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhysicsEngine.Tests", "PhysicsEngine.Tests\PhysicsEngine.Tests.csproj", "{4BA23305-827F-473F-BEC5-AEF9414FA2E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsEngine.Wpf", "PhysicsEngine.Wpf\PhysicsEngine.Wpf.csproj", "{FAC58B97-54A4-47E7-8FEC-CD1C40419D12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhysicsEngine.Wpf", "PhysicsEngine.Wpf\PhysicsEngine.Wpf.csproj", "{FAC58B97-54A4-47E7-8FEC-CD1C40419D12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,26 +23,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|ARM.Build.0 = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|x64.Build.0 = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Debug|x86.Build.0 = Debug|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|ARM.ActiveCfg = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|ARM.Build.0 = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|ARM64.Build.0 = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|x64.ActiveCfg = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|x64.Build.0 = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|x86.ActiveCfg = Release|Any CPU
-		{082FFD48-EF35-48A9-A276-4B251C8C5A2D}.Release|x86.Build.0 = Release|Any CPU
 		{AE5BC3D6-92B4-4720-859F-3A06DCB6C9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE5BC3D6-92B4-4720-859F-3A06DCB6C9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5BC3D6-92B4-4720-859F-3A06DCB6C9C8}.Debug|ARM.ActiveCfg = Debug|Any CPU
