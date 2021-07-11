@@ -8,7 +8,7 @@ namespace PhysicsEngine.Cli
 {
     class Program
     {
-        private static readonly Space _space = new Space();
+        private static readonly WorldSpace WorldSpace = new WorldSpace();
 
         static void Main(string[] args)
         {
@@ -27,14 +27,14 @@ namespace PhysicsEngine.Cli
                 if (arguments[0] == "add")
                 {
                     var mObj = new ModelObject();
-                    _space.AddObject(mObj);
+                    WorldSpace.AddObject(mObj);
                     //_ = RunPeriodicMove(mObj); // For debug purposes only
                 }
                 else if (arguments[0] == "ls")
                 {
                     if (arguments.Length == 1)
                     {
-                        var objects = _space.GetModelObjects();
+                        var objects = WorldSpace.GetModelObjects();
                         foreach (var modelObject in objects)
                         {
                             Console.WriteLine(modelObject.Id);
@@ -43,7 +43,7 @@ namespace PhysicsEngine.Cli
                     else
                     {
                         var id = arguments[1];
-                        var obj = _space.GetObject(id);
+                        var obj = WorldSpace.GetObject(id);
                         Console.WriteLine($"{obj.modelObject.Id}: {obj.state}");
                     }
                 }
@@ -71,8 +71,8 @@ namespace PhysicsEngine.Cli
         private static void TranslateObject(string objectId, int x, int y, int z)
         {
             var translation = new Translation(x, y, z);
-            var mObj = _space.GetObject(objectId);
-            _space.TransformObject(mObj.modelObject, translation);
+            var mObj = WorldSpace.GetObject(objectId);
+            WorldSpace.TransformObject(mObj.modelObject, translation);
         }
     }
 }

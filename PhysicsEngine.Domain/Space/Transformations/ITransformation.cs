@@ -2,6 +2,6 @@
 {
     public interface ITransformation
     {
-        GeometricalState Transform(GeometricalState initialState);
+        Transform Transform(Transform initialState);
     }
 }

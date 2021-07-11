@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using PhysicsEngine.Core.Model;
 using PhysicsEngine.Core.Space.Transformations;
@@ -13,20 +12,25 @@ namespace PhysicsEngine.Core.Space
     // | /
     // |__________ X
 
-    public class Space
+    /// <summary>
+    /// Space reference for the world.
+    /// Axises are in centimeter : one unit on each axis is equal to one centimeter.
+    /// TODO : Set the length unit for axis scale
+    /// </summary>
+    public class WorldSpace
     {
-        private readonly IDictionary<ModelObject, GeometricalState> _modelObjects = new Dictionary<ModelObject, GeometricalState>();
+        private readonly IDictionary<ModelObject, Transform> _modelObjects = new Dictionary<ModelObject, Transform>();
 
         public void AddObject(ModelObject mObject)
         {
-            _modelObjects.Add(mObject, new GeometricalState());
+            _modelObjects.Add(mObject, new Transform());
         }
 
-        public (ModelObject modelObject, GeometricalState state) GetObject(string id)
+        public (ModelObject modelObject, Transform state) GetObject(string id)
         {
             var pair = _modelObjects.FirstOrDefault(m => m.Key.Id == id);
 
-            return !pair.Equals(default(KeyValuePair<ModelObject, GeometricalState>)) ? (pair.Key, pair.Value) : (null, null);
+            return !pair.Equals(default(KeyValuePair<ModelObject, Transform>)) ? (pair.Key, pair.Value) : (null, null);
         }
 
         public IEnumerable<ModelObject> GetModelObjects()

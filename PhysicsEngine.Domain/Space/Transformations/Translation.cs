@@ -1,4 +1,6 @@
-﻿namespace PhysicsEngine.Core.Space.Transformations
+﻿using System.Numerics;
+
+namespace PhysicsEngine.Core.Space.Transformations
 {
     public class Translation : ITransformation
     {
@@ -13,16 +15,16 @@
         public float Y { get; set; }
         public float Z { get; set; }
 
-        public GeometricalState Transform(GeometricalState initialState)
+        public Transform Transform(Transform initialState)
         {
-            var newPosition = new Position(
-                initialState.Position.X + X,
+            var newPosition = new Vector3(
+                initialState.Position.X + Y, 
                 initialState.Position.Y + Y,
                 initialState.Position.Z + Z
                 
             );
 
-            return new GeometricalState
+            return new Transform
             {
                 Position = newPosition
             };
