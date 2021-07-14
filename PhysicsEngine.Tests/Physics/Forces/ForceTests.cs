@@ -56,5 +56,18 @@ namespace PhysicsEngine.Tests.Physics.Forces
             vector.Y.Should().BeApproximately((float)(-3 / Math.Sqrt(118)), FloatingPointTolerance);
             vector.Z.Should().BeApproximately((float)(18 / Math.Sqrt(118)), FloatingPointTolerance);
         }
+
+        [TestMethod]
+        public void ComputeVector_SameObject()
+        {
+            var obj1 = new ModelObject { Transform = { Position = new Vector3(6, 4, 1) } };
+            var force = new DummyRepulsionForce(obj1, obj1);
+
+            var vector = force.ComputeVector();
+
+            vector.X.Should().BeApproximately(0, FloatingPointTolerance);
+            vector.Y.Should().BeApproximately(0, FloatingPointTolerance);
+            vector.Z.Should().BeApproximately(0, FloatingPointTolerance);
+        }
     }
 }

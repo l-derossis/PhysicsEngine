@@ -27,7 +27,9 @@ namespace PhysicsEngine.Core.Physics.Forces
                 ? AppliedBy.Transform.Position - AppliedTo.Transform.Position
                 : AppliedTo.Transform.Position - AppliedBy.Transform.Position;
 
-            return Vector3.Normalize(vector) * (float)Magnitude.Newtons;
+            vector = vector == Vector3.Zero ? Vector3.Zero : Vector3.Normalize(vector);
+
+            return vector * (float)Magnitude.Newtons;
         }
     }
 }

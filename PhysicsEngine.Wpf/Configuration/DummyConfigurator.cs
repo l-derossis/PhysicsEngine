@@ -22,9 +22,9 @@ namespace PhysicsEngine.Wpf.Configuration
             mObj2.Transform.Position = new Vector3(350, 200, 0);
 
 
-            var gravity1 = new EarthGravity(mObj2, mObj1);
+            var gravity1 = new EarthGravity(mObj1, mObj1);
             mObj1.AddForce(gravity1);
-            
+
 
             space.AddObject(mObj1);
             space.AddObject(mObj2);
