@@ -12,7 +12,7 @@ namespace PhysicsEngine.Wpf.Renderers
 {
     public class CanvasSceneRenderer : ISceneRenderer
     {
-        private readonly Dictionary<ModelObject, UIElement> _objects = new Dictionary<ModelObject, UIElement>();
+        private readonly Dictionary<ModelObject, UIElement> _objects = new();
 
         private readonly Canvas _canvas;
 

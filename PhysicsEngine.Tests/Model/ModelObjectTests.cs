@@ -18,20 +18,41 @@ namespace PhysicsEngine.Tests.Model
         private readonly ModelObject _object = new();
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        [DataRow(-2)]
+        [DataRow(0)]
+        public void MassShouldBePositive(int mass)
+        {
+            var m = Mass.FromKilograms(mass);
+            var _ = new ModelObject
+            {
+                Mass = m
+            };
+        }
+
+        [TestMethod]
+        public void Move_NoMovement()
+        {
+            _object.Move(TimeSpan.FromSeconds(1));
+
+            _object.Transform.Position.X.Should().BeApproximately(0, FloatingPointTolerance);
+        }
+
+        [TestMethod]
         public void Move_SingleDimensionMovement()
         {
-            var motion = new Motion { Direction = new Vector3(1, 0, 0), Speed = Speed.FromMetersPerSecond(2) };
+            var motion = new Motion { DirectionNormalized = new Vector3(1, 0, 0), Speed = Speed.FromMetersPerSecond(2) };
             _object.Motion = motion;
 
             _object.Move(TimeSpan.FromSeconds(1));
 
-            _object.Transform.Position.X.Should().BeApproximately(200, FloatingPointTolerance);
+            _object.Transform.Position.X.Should().BeApproximately(2, FloatingPointTolerance);
         }
 
         [TestMethod]
         public void Move_TwoDimensionsMovement()
         {
-            var motion = new Motion { Direction = new Vector3(4, 3, 0), Speed = Speed.FromCentimetersPerSecond(1) };
+            var motion = new Motion { DirectionNormalized = new Vector3(4, 3, 0), Speed = Speed.FromMetersPerSecond(1) };
             _object.Motion = motion;
 
             _object.Move(TimeSpan.FromSeconds(5));
@@ -91,6 +112,25 @@ namespace PhysicsEngine.Tests.Model
             speedVariationVector.X.Should().BeApproximately(0, FloatingPointTolerance);
             speedVariationVector.Y.Should().BeApproximately(0, FloatingPointTolerance);
             speedVariationVector.Z.Should().BeApproximately(0, FloatingPointTolerance);
+        }
+
+        [TestMethod]
+        public void UpdatePosition_NoMovement()
+        {
+            _object.UpdatePosition(TimeSpan.FromSeconds(1));
+
+            _object.Transform.Position.X.Should().BeApproximately(0, FloatingPointTolerance);
+        }
+
+        [TestMethod]
+        public void UpdatePosition_NoForces()
+        {
+            var motion = new Motion { DirectionNormalized = new Vector3(1, 0, 0), Speed = Speed.FromMetersPerSecond(10) };
+            _object.Motion = motion;
+
+            _object.UpdatePosition(TimeSpan.FromSeconds(1));
+
+            _object.Transform.Position.X.Should().BeApproximately(10, FloatingPointTolerance);
         }
     }
 

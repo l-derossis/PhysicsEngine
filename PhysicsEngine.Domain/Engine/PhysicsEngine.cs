@@ -12,7 +12,7 @@ namespace PhysicsEngine.Core.Engine
         public ISceneRenderer SceneRenderer { get; }
         public IEngineConfigurator Configurator { get; }
 
-        private readonly WorldSpace WorldSpace = new WorldSpace();
+        private readonly WorldSpace _worldSpace = new();
 
         public PhysicsEngine(ISceneRenderer renderer, IEngineConfigurator configurator = null)
         {
@@ -35,9 +35,9 @@ namespace PhysicsEngine.Core.Engine
         // Render scene
         public async Task Run()
         {
-            Configurator?.Setup(WorldSpace);
+            Configurator?.Setup(_worldSpace);
 
-            var timeDelta = TimeSpan.FromMilliseconds(25);
+            var timeDelta = TimeSpan.FromMilliseconds(30);
 
             // Loop (for every time delta)
             while (true)
@@ -45,13 +45,13 @@ namespace PhysicsEngine.Core.Engine
                 var delayTask = Task.Delay(timeDelta);
 
                 // Loop (for every object)
-                foreach (var modelObject in WorldSpace.GetModelObjects())
+                foreach (var modelObject in _worldSpace.GetModelObjects())
                 {
                     // Compute new position of object after time delta
-                    modelObject.Move(timeDelta);
+                    modelObject.UpdatePosition(timeDelta);
                 }
 
-                SceneRenderer.RenderScene(WorldSpace);
+                SceneRenderer.RenderScene(_worldSpace);
 
                 await delayTask;
             }
