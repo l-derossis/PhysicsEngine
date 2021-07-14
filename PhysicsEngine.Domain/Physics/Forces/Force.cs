@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using PhysicsEngine.Core.Model;
 
 namespace PhysicsEngine.Core.Physics.Forces
@@ -16,13 +17,17 @@ namespace PhysicsEngine.Core.Physics.Forces
 
         public ModelObject AppliedBy { get; }
 
-        public abstract Action Action { get; }
+        public abstract ForceAction ForceAction { get; }
 
         public abstract UnitsNet.Force Magnitude { get; }
 
         public Vector3 ComputeVector()
         {
-            throw new NotImplementedException();
+            var vector = ForceAction == ForceAction.Attraction
+                ? AppliedBy.Transform.Position - AppliedTo.Transform.Position
+                : AppliedTo.Transform.Position - AppliedBy.Transform.Position;
+
+            return Vector3.Normalize(vector) * (float)Magnitude.Newtons;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 using PhysicsEngine.Core.Physics;
 using PhysicsEngine.Core.Space;
 using UnitsNet;
@@ -19,9 +18,14 @@ namespace PhysicsEngine.Core.Model
 
         public Mass Mass { get; set; }
 
-        private readonly IList<Force> _forces = new List<Force>();
+        private readonly IList<Force> _appliedForces = new List<Force>();
 
-        public IEnumerable<Force> Forces => _forces;
+        public IEnumerable<Force> AppliedForces => _appliedForces;
+
+        public void AddForce(Force force)
+        {
+            _appliedForces.Add(force);
+        }
 
         /// <summary>
         /// Move the object based on its current <see cref="ModelObject.Motion"/>. The object position is updated after
@@ -34,6 +38,26 @@ namespace PhysicsEngine.Core.Model
             var distanceCovered = Motion.Speed * period;
             var speedVector = Vector3.Multiply(normalizedDirection, (float)distanceCovered.Centimeters);
             Transform.Position += speedVector;
+        }
+
+        /// <summary>
+        /// Get the speed variation vector, using the following formula :
+        /// speedVariationVector = sum(forces) / mass * timeDelta
+        /// For a better precision, the time delta should be as close to zero as possible
+        /// </summary>
+        /// <param name="delta">Time delta</param>
+        /// <returns>Speed variation vector</returns>
+        public Vector3 ComputeSpeedVariationVector(TimeSpan delta)
+        {
+            var totalForcesVector = new Vector3();
+            foreach (var force in AppliedForces)
+            {
+                totalForcesVector += force.ComputeVector();
+            }
+
+            var speedVariationVector = totalForcesVector / (float) Mass.Kilograms * delta.Seconds;
+
+            return speedVariationVector;
         }
     }
 }

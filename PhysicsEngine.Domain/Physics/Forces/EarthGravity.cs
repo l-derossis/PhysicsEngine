@@ -14,7 +14,7 @@ namespace PhysicsEngine.Core.Physics.Forces
         {
         }
 
-        public override Action Action => Action.Attraction;
+        public override ForceAction ForceAction => ForceAction.Attraction;
 
         public override UnitsNet.Force Magnitude =>
             new UnitsNet.Force(AppliedTo.Mass.Kilograms * 9.81, ForceUnit.Newton);
