@@ -22,7 +22,7 @@ namespace PhysicsEngine.Wpf
         {
             InitializeComponent();
 
-            var engine = new Core.Engine.PhysicsEngine(new CanvasSceneRenderer(MainCanvas), new DummyConfigurator());
+            var engine = new Core.Engine.PhysicsEngine(new CanvasSceneRenderer(MainCanvas), new PendulumConfigurator());
 
             Task.Run(async () =>
             {
